@@ -209,6 +209,12 @@ export default function SearchBanner({ onSearch, location }) {
           `${process.env.REACT_APP_MMI_BASE_URL}mmi/api/mmi_place_info?eloc=${locationData?.location?.address?.areaCode}`
         )
       );
+
+      // Add manual latitude and longitude
+      data.latitude = '30.718241';
+      data.longitude = '76.729500';
+
+
       if (data?.latitude && data?.longitude) {
         const { latitude, longitude } = data;
         AddCookie("LatLongInfo", JSON.stringify({ latitude, longitude }));
@@ -237,6 +243,10 @@ export default function SearchBanner({ onSearch, location }) {
           `${process.env.REACT_APP_MMI_BASE_URL}mmi/api/mmi_latlong_info?lat=${location?.lat}&long=${location?.long}`
         )
       );
+
+      data.lat = '30.718241';
+      data.log = '76.729500';
+
       const { lat, lng, pincode, city, state } = data?.results?.[0];
       setSearchedLocation({
         ...searchedLocation,
