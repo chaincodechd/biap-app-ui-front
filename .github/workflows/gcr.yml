@@ -11,7 +11,7 @@ on:
   #  branches: [ "*" ]
 
   # Allows you to run this workflow manually from the Actions tab
-    workflow_dispatch:
+   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,11 +27,11 @@ jobs:
         env:
           GCR_SECRET: ${{ secrets.GCR_SECRET }}
         run: |
-          echo $GCR_SECRET > ./chaincode-consulting-d12a23ddf47d.json
-          gcloud auth activate-service-account ci-528@chaincode-consulting.iam.gserviceaccount.com --key-file=./chaincode-consulting-d12a23ddf47d.json
+          echo $GCR_SECRET > ./chaincode-consulting-cc7da558796a.json
+          gcloud auth activate-service-account ci-528@chaincode-consulting.iam.gserviceaccount.com --key-file=./chaincode-consulting-cc7da558796a.json
           gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io
           gcloud auth configure-docker asia-south2-docker.pkg.dev
-          rm ./chaincode-consulting-d12a23ddf47d.json
+          rm ./chaincode-consulting-cc7da558796a.json
 
       - name: Build
         run: |
